@@ -5,13 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mortajadora Cabe 170 · Valcomaq</title>
 <meta name="description" content="Mortajadora Cabe 170 - ENTALLADORAS - Disponible">
+<meta property="og:type" content="product">
+<meta property="og:title" content="Mortajadora Cabe 170 · Valcomaq">
+<meta property="og:description" content="Mortajadora Cabe 170 - ENTALLADORAS - Disponible">
+<meta property="og:image" content="https://valcomaq.github.io/valcomaq-landings/01.10.0352/imagenes/foto_1.jpg">
+<meta property="og:url" content="https://valcomaq.github.io/valcomaq-landings/01.10.0352/">
+<meta property="og:site_name" content="Valcomaq">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mortajadora Cabe 170 · Valcomaq">
+<meta name="twitter:description" content="Mortajadora Cabe 170 - ENTALLADORAS - Disponible">
+<meta name="twitter:image" content="https://valcomaq.github.io/valcomaq-landings/01.10.0352/imagenes/foto_1.jpg">
+<link rel="icon" href="https://valcomaq.github.io/valcomaq-landings/logo.jpg" type="image/jpeg">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header class="header">
   <div class="header-inner">
-    <div class="logo">VALCO<span>MAQ</span></div>
+    <a class="logo-link" href="https://valcomaq.github.io/valcomaq-landings/01.10.0352/" aria-label="Valcomaq">
+      <img class="logo-img" src="logo.jpg" alt="Valcomaq">
+    </a>
     <div class="header-tag">Maquinaria industrial de ocasión</div>
   </div>
 </header>
@@ -32,15 +45,11 @@
           <button type="button" class="dot activo" data-i="0" aria-label="Imagen 1"></button>
           <button type="button" class="dot" data-i="1" aria-label="Imagen 2"></button>
           <button type="button" class="dot" data-i="2" aria-label="Imagen 3"></button>
-          <button type="button" class="dot" data-i="3" aria-label="Imagen 4"></button>
-          <button type="button" class="dot" data-i="4" aria-label="Imagen 5"></button>
         </div>
         <div class="carrusel-miniaturas" id="carruselMiniaturas">
           <img src="imagenes/foto_1.jpg" alt="" loading="lazy" class="activa" data-i="0">
           <img src="imagenes/foto_2.jpg" alt="" loading="lazy" class="" data-i="1">
           <img src="imagenes/foto_3.jpg" alt="" loading="lazy" class="" data-i="2">
-          <img src="imagenes/WhatsApp%20Image%202026-05-23%20at%2019.04.20.jpeg" alt="" loading="lazy" class="" data-i="3">
-          <img src="imagenes/WhatsApp%20Image%202026-05-23%20at%2019.04.21.jpeg" alt="" loading="lazy" class="" data-i="4">
         </div>
       </div>
     </div>
@@ -93,7 +102,7 @@
 
 <script>
 (function(){
-  const srcs = ["imagenes/foto_1.jpg","imagenes/foto_2.jpg","imagenes/foto_3.jpg","imagenes/WhatsApp%20Image%202026-05-23%20at%2019.04.20.jpeg","imagenes/WhatsApp%20Image%202026-05-23%20at%2019.04.21.jpeg"];
+  const srcs = ["imagenes/foto_1.jpg","imagenes/foto_2.jpg","imagenes/foto_3.jpg"];
   const altBase = "Mortajadora Cabe 170";
   if (srcs.length <= 1) return;
   const img = document.getElementById("carruselImg");
