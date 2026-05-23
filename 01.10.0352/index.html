@@ -20,10 +20,28 @@
 
   <section class="producto">
     <div class="galeria">
-      <img class="principal" id="imgPrincipal" src="imagenes/WhatsApp%20Image%202026-05-23%20at%2019.04.20.jpeg" alt="Mortajadora Cabe 170" loading="eager">
-      <div class="miniaturas">
-        <img src="imagenes/WhatsApp%20Image%202026-05-23%20at%2019.04.20.jpeg" alt="" loading="lazy" onclick="document.getElementById('imgPrincipal').src=this.src">
-        <img src="imagenes/WhatsApp%20Image%202026-05-23%20at%2019.04.21.jpeg" alt="" loading="lazy" onclick="document.getElementById('imgPrincipal').src=this.src">
+      <div class="carrusel" id="carrusel">
+        <div class="carrusel-viewport">
+          <img class="carrusel-img" id="carruselImg" src="imagenes/foto_1.jpg" alt="Mortajadora Cabe 170" loading="eager">
+          
+          <button type="button" class="carrusel-flecha prev" id="carruselPrev" aria-label="Anterior">&#10094;</button>
+          <button type="button" class="carrusel-flecha next" id="carruselNext" aria-label="Siguiente">&#10095;</button>
+        </div>
+        
+        <div class="carrusel-dots" id="carruselDots">
+          <button type="button" class="dot activo" data-i="0" aria-label="Imagen 1"></button>
+          <button type="button" class="dot" data-i="1" aria-label="Imagen 2"></button>
+          <button type="button" class="dot" data-i="2" aria-label="Imagen 3"></button>
+          <button type="button" class="dot" data-i="3" aria-label="Imagen 4"></button>
+          <button type="button" class="dot" data-i="4" aria-label="Imagen 5"></button>
+        </div>
+        <div class="carrusel-miniaturas" id="carruselMiniaturas">
+          <img src="imagenes/foto_1.jpg" alt="" loading="lazy" class="activa" data-i="0">
+          <img src="imagenes/foto_2.jpg" alt="" loading="lazy" class="" data-i="1">
+          <img src="imagenes/foto_3.jpg" alt="" loading="lazy" class="" data-i="2">
+          <img src="imagenes/WhatsApp%20Image%202026-05-23%20at%2019.04.20.jpeg" alt="" loading="lazy" class="" data-i="3">
+          <img src="imagenes/WhatsApp%20Image%202026-05-23%20at%2019.04.21.jpeg" alt="" loading="lazy" class="" data-i="4">
+        </div>
       </div>
     </div>
 
@@ -35,8 +53,8 @@
         <span class="badge">Disponible</span>
       </div>
       <div class="precio">
-         €<br>
-        <small>IVA no incluido · Entrega negociable</small>
+        7200 €<br>
+        <small>IVA no incluido · Exworks</small>
       </div>
       <a href="formulario.html?maquina=01.10.0352" class="btn">Me interesa</a>
     </div>
@@ -73,5 +91,41 @@
   Valcomaq · Compraventa de maquinaria industrial · <a href="mailto:info@valcomaq.com">info@valcomaq.com</a>
 </footer>
 
+<script>
+(function(){
+  const srcs = ["imagenes/foto_1.jpg","imagenes/foto_2.jpg","imagenes/foto_3.jpg","imagenes/WhatsApp%20Image%202026-05-23%20at%2019.04.20.jpeg","imagenes/WhatsApp%20Image%202026-05-23%20at%2019.04.21.jpeg"];
+  const altBase = "Mortajadora Cabe 170";
+  if (srcs.length <= 1) return;
+  const img = document.getElementById("carruselImg");
+  const dots = document.querySelectorAll("#carruselDots .dot");
+  const minis = document.querySelectorAll("#carruselMiniaturas img");
+  let i = 0;
+  function go(n) {
+    i = (n + srcs.length) % srcs.length;
+    img.src = srcs[i];
+    img.alt = altBase + " - imagen " + (i + 1);
+    dots.forEach((d, k) => d.classList.toggle("activo", k === i));
+    minis.forEach((m, k) => m.classList.toggle("activa", k === i));
+  }
+  document.getElementById("carruselPrev").addEventListener("click", () => go(i - 1));
+  document.getElementById("carruselNext").addEventListener("click", () => go(i + 1));
+  dots.forEach((d, k) => d.addEventListener("click", () => go(k)));
+  minis.forEach((m, k) => m.addEventListener("click", () => go(k)));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") go(i - 1);
+    else if (e.key === "ArrowRight") go(i + 1);
+  });
+  // Swipe táctil básico
+  let x0 = null;
+  const vp = document.querySelector(".carrusel-viewport");
+  vp.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+  vp.addEventListener("touchend", (e) => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) go(i + (dx < 0 ? 1 : -1));
+    x0 = null;
+  });
+})();
+</script>
 </body>
 </html>
