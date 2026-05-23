@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entalladora CNC Colomer · Valcomaq</title>
+<meta name="description" content="Entalladora CNC Colomer - ENTALLADORAS - A preparar">
+<meta property="og:type" content="product">
+<meta property="og:title" content="Entalladora CNC Colomer · Valcomaq">
+<meta property="og:description" content="Entalladora CNC Colomer - ENTALLADORAS - A preparar">
+<meta property="og:image" content="https://valcomaq.github.io/valcomaq-landings/01.10.0346/imagenes/WhatsApp%20Image%202026-05-23%20at%2019.04.20.jpeg">
+<meta property="og:url" content="https://valcomaq.github.io/valcomaq-landings/01.10.0346/">
+<meta property="og:site_name" content="Valcomaq">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Entalladora CNC Colomer · Valcomaq">
+<meta name="twitter:description" content="Entalladora CNC Colomer - ENTALLADORAS - A preparar">
+<meta name="twitter:image" content="https://valcomaq.github.io/valcomaq-landings/01.10.0346/imagenes/WhatsApp%20Image%202026-05-23%20at%2019.04.20.jpeg">
+<link rel="icon" href="https://valcomaq.github.io/valcomaq-landings/logo.jpg" type="image/jpeg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a class="logo-link" href="https://valcomaq.github.io/valcomaq-landings/01.10.0346/" aria-label="Valcomaq">
+      <img class="logo-img" src="logo.jpg" alt="Valcomaq">
+    </a>
+    <div class="header-tag">Maquinaria industrial de ocasión</div>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="producto">
+    <div class="galeria">
+      <div class="carrusel" id="carrusel">
+        <div class="carrusel-viewport">
+          <img class="carrusel-img" id="carruselImg" src="imagenes/WhatsApp%20Image%202026-05-23%20at%2019.04.20.jpeg" alt="Entalladora CNC Colomer" loading="eager">
+          
+          <button type="button" class="carrusel-flecha prev" id="carruselPrev" aria-label="Anterior">&#10094;</button>
+          <button type="button" class="carrusel-flecha next" id="carruselNext" aria-label="Siguiente">&#10095;</button>
+        </div>
+        
+        <div class="carrusel-dots" id="carruselDots">
+          <button type="button" class="dot activo" data-i="0" aria-label="Imagen 1"></button>
+          <button type="button" class="dot" data-i="1" aria-label="Imagen 2"></button>
+        </div>
+        <div class="carrusel-miniaturas" id="carruselMiniaturas">
+          <img src="imagenes/WhatsApp%20Image%202026-05-23%20at%2019.04.20.jpeg" alt="" loading="lazy" class="activa" data-i="0">
+          <img src="imagenes/WhatsApp%20Image%202026-05-23%20at%2019.04.21.jpeg" alt="" loading="lazy" class="" data-i="1">
+        </div>
+      </div>
+    </div>
+
+    <div class="info">
+      <div class="referencia">Ref. 01.10.0346</div>
+      <h1>Entalladora CNC Colomer</h1>
+      <div>
+        <span class="badge">ENTALLADORAS</span>
+        <span class="badge">A preparar</span>
+      </div>
+      <div class="precio">
+        Consultar precio<br>
+        <small>IVA no incluido · Exworks</small>
+      </div>
+      <a href="formulario.html?maquina=01.10.0346" class="btn">Me interesa</a>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <h2>Características técnicas</h2>
+    <ul>
+        <li>- Tipo de máquina: Entalladora / Mortajadora / Brochadora vertical CNC</li>
+        <li>- Marca/Tipo: Colomer</li>
+        <li>- Aplicación principal: Realización de chaveteros</li>
+        <li>- Control: CNC</li>
+        <li>- Configuración: Vertical</li>
+        <li>- Accesorios: Incluye diferentes accesorios</li>
+        <li>- Capacidad de entallas: Múltiples tipos de entallas disponibles</li>
+      </ul>
+  </section>
+
+  <section class="cta-final">
+    <h2>¿Te interesa esta máquina?</h2>
+    <p>Rellena el formulario y te contactamos en menos de 24 horas.</p>
+    <a href="formulario.html?maquina=01.10.0346" class="btn">Quiero más información</a>
+  </section>
+
+</main>
+
+<footer class="footer">
+  Valcomaq · Compraventa de maquinaria industrial · <a href="mailto:info@valcomaq.com">info@valcomaq.com</a>
+</footer>
+
+<script>
+(function(){
+  const srcs = ["imagenes/WhatsApp%20Image%202026-05-23%20at%2019.04.20.jpeg","imagenes/WhatsApp%20Image%202026-05-23%20at%2019.04.21.jpeg"];
+  const altBase = "Entalladora CNC Colomer";
+  if (srcs.length <= 1) return;
+  const img = document.getElementById("carruselImg");
+  const dots = document.querySelectorAll("#carruselDots .dot");
+  const minis = document.querySelectorAll("#carruselMiniaturas img");
+  let i = 0;
+  function go(n) {
+    i = (n + srcs.length) % srcs.length;
+    img.src = srcs[i];
+    img.alt = altBase + " - imagen " + (i + 1);
+    dots.forEach((d, k) => d.classList.toggle("activo", k === i));
+    minis.forEach((m, k) => m.classList.toggle("activa", k === i));
+  }
+  document.getElementById("carruselPrev").addEventListener("click", () => go(i - 1));
+  document.getElementById("carruselNext").addEventListener("click", () => go(i + 1));
+  dots.forEach((d, k) => d.addEventListener("click", () => go(k)));
+  minis.forEach((m, k) => m.addEventListener("click", () => go(k)));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") go(i - 1);
+    else if (e.key === "ArrowRight") go(i + 1);
+  });
+  // Swipe táctil básico
+  let x0 = null;
+  const vp = document.querySelector(".carrusel-viewport");
+  vp.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+  vp.addEventListener("touchend", (e) => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) go(i + (dx < 0 ? 1 : -1));
+    x0 = null;
+  });
+})();
+</script>
+</body>
+</html>
