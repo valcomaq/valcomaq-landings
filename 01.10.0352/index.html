@@ -35,7 +35,7 @@
     <div class="galeria">
       <div class="carrusel" id="carrusel">
         <div class="carrusel-viewport">
-          <img class="carrusel-img" id="carruselImg" src="imagenes/WhatsApp%20Image%202026-05-23%20at%2019.04.20.jpeg" alt="Mortajadora Cabe 170" loading="eager">
+          <img class="carrusel-img" id="carruselImg" src="imagenes/test_1.jpg" alt="Mortajadora Cabe 170" loading="eager">
           
           <button type="button" class="carrusel-flecha prev" id="carruselPrev" aria-label="Anterior">&#10094;</button>
           <button type="button" class="carrusel-flecha next" id="carruselNext" aria-label="Siguiente">&#10095;</button>
@@ -44,10 +44,14 @@
         <div class="carrusel-dots" id="carruselDots">
           <button type="button" class="dot activo" data-i="0" aria-label="Imagen 1"></button>
           <button type="button" class="dot" data-i="1" aria-label="Imagen 2"></button>
+          <button type="button" class="dot" data-i="2" aria-label="Imagen 3"></button>
+          <button type="button" class="dot" data-i="3" aria-label="Imagen 4"></button>
         </div>
         <div class="carrusel-miniaturas" id="carruselMiniaturas">
-          <img src="imagenes/WhatsApp%20Image%202026-05-23%20at%2019.04.20.jpeg" alt="" loading="lazy" class="activa" data-i="0">
-          <img src="imagenes/WhatsApp%20Image%202026-05-23%20at%2019.04.21.jpeg" alt="" loading="lazy" class="" data-i="1">
+          <img src="imagenes/test_1.jpg" alt="" loading="lazy" class="activa" data-i="0">
+          <img src="imagenes/test_2.jpg" alt="" loading="lazy" class="" data-i="1">
+          <img src="imagenes/WhatsApp%20Image%202026-05-23%20at%2019.04.20.jpeg" alt="" loading="lazy" class="" data-i="2">
+          <img src="imagenes/WhatsApp%20Image%202026-05-23%20at%2019.04.21.jpeg" alt="" loading="lazy" class="" data-i="3">
         </div>
       </div>
     </div>
@@ -100,7 +104,7 @@
 
 <script>
 (function(){
-  const srcs = ["imagenes/WhatsApp%20Image%202026-05-23%20at%2019.04.20.jpeg","imagenes/WhatsApp%20Image%202026-05-23%20at%2019.04.21.jpeg"];
+  const srcs = ["imagenes/test_1.jpg","imagenes/test_2.jpg","imagenes/WhatsApp%20Image%202026-05-23%20at%2019.04.20.jpeg","imagenes/WhatsApp%20Image%202026-05-23%20at%2019.04.21.jpeg"];
   const altBase = "Mortajadora Cabe 170";
   if (srcs.length <= 1) return;
   const img = document.getElementById("carruselImg");
