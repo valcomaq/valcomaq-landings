@@ -131,7 +131,10 @@
     font-size: clamp(36px, 5vw, 54px);
     margin-bottom: 48px;
     color: #1a1a1a;
+    text-align: center;
   }
+  .req { color: #D4401A; margin-left: 2px; }
+  .form-hint { font-size: 12px; color: #8F8F8F; text-align: center; margin-top: -24px; margin-bottom: 28px; }
 
   /* OFFER GRID */
   .grid {
@@ -494,40 +497,47 @@
 
 <section id="formulario" class="section-gray reveal">
   <div class="container">
-    <h2 class="section-title" style="text-align:center;">Envía tu candidatura</h2>
+    <h2 class="section-title">Envía tu candidatura</h2>
 
     <div class="form-wrap" id="formWrap">
       <p class="form-sub">Rellena el formulario y nos pondremos en contacto contigo.</p>
+      <p class="form-hint">* Todos los campos son obligatorios</p>
 
       <div class="form-error-box" id="formErrorBox"></div>
 
       <form id="form" novalidate>
         <div class="field" data-field="nombre">
-          <label for="nombre">Nombre completo</label>
+          <label for="nombre">Nombre completo<span class="req">*</span></label>
           <input type="text" id="nombre" name="nombre" autocomplete="name">
           <div class="field-error">Indícanos tu nombre completo.</div>
         </div>
 
         <div class="field" data-field="telefono">
-          <label for="telefono">Teléfono</label>
+          <label for="telefono">Teléfono<span class="req">*</span></label>
           <input type="tel" id="telefono" name="telefono" autocomplete="tel">
           <div class="field-error">Indícanos un teléfono válido.</div>
         </div>
 
         <div class="field" data-field="email">
-          <label for="email">Email</label>
+          <label for="email">Email<span class="req">*</span></label>
           <input type="email" id="email" name="email" autocomplete="email">
           <div class="field-error">Indícanos un email válido.</div>
         </div>
 
+        <div class="field" data-field="ciudad">
+          <label for="ciudad">Ciudad de residencia actual<span class="req">*</span></label>
+          <input type="text" id="ciudad" name="ciudad" autocomplete="address-level2" placeholder="Ej: Valencia, Madrid, Barcelona...">
+          <div class="field-error">Indícanos tu ciudad de residencia.</div>
+        </div>
+
         <div class="field" data-field="motivacion">
-          <label for="motivacion">¿Por qué te interesa este puesto?</label>
+          <label for="motivacion">¿Por qué te interesa este puesto?<span class="req">*</span></label>
           <textarea id="motivacion" name="motivacion" rows="5"></textarea>
           <div class="field-error">Escribe al menos 30 caracteres explicando tu interés.</div>
         </div>
 
         <div class="field" data-field="cv">
-          <label>Adjuntar CV (PDF, máx 5MB)</label>
+          <label>Adjuntar CV (PDF, máx 5MB)<span class="req">*</span></label>
           <label class="file-box" for="cv">
             <div class="file-text">Haz clic para seleccionar tu CV en PDF</div>
             <div class="file-name" id="fileName"></div>
@@ -642,12 +652,14 @@ form.addEventListener('submit', async (ev) => {
   const nombre = document.getElementById('nombre').value.trim();
   const telefono = document.getElementById('telefono').value.trim();
   const email = document.getElementById('email').value.trim();
+  const ciudad = document.getElementById('ciudad').value.trim();
   const motivacion = document.getElementById('motivacion').value.trim();
 
   let ok = true;
   if (nombre.length < 2) { setErr('nombre', true); ok = false; } else setErr('nombre', false);
   if (!isPhone(telefono)) { setErr('telefono', true); ok = false; } else setErr('telefono', false);
   if (!isEmail(email)) { setErr('email', true); ok = false; } else setErr('email', false);
+  if (ciudad.length < 2) { setErr('ciudad', true); ok = false; } else setErr('ciudad', false);
   if (motivacion.length < 30) { setErr('motivacion', true); ok = false; } else setErr('motivacion', false);
   if (!cvFile) {
     cvError.textContent = 'Adjunta tu CV en formato PDF (máx 5MB).';
@@ -669,6 +681,7 @@ form.addEventListener('submit', async (ev) => {
     params.append('nombre', nombre);
     params.append('telefono', telefono);
     params.append('email', email);
+    params.append('ciudad', ciudad);
     params.append('motivacion', motivacion);
     params.append('cvBase64', cvBase64);
     params.append('cvNombre', cvFile.name);
