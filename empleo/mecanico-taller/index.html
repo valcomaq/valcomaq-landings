@@ -555,7 +555,7 @@
         <div class="field" data-field="motivacion">
           <label for="motivacion">¿Por qué te interesa este puesto?<span class="req">*</span></label>
           <textarea id="motivacion" name="motivacion" rows="5"></textarea>
-          <div class="field-error">Escribe al menos 30 caracteres explicando tu interés.</div>
+          <div class="field-error">Escribe al menos 10 caracteres explicando tu interés.</div>
         </div>
 
         <div class="field" data-field="cv">
@@ -682,7 +682,7 @@ form.addEventListener('submit', async (ev) => {
   if (!isPhone(telefono)) { setErr('telefono', true); ok = false; } else setErr('telefono', false);
   if (!isEmail(email)) { setErr('email', true); ok = false; } else setErr('email', false);
   if (ciudad.length < 2) { setErr('ciudad', true); ok = false; } else setErr('ciudad', false);
-  if (motivacion.length < 30) { setErr('motivacion', true); ok = false; } else setErr('motivacion', false);
+  if (motivacion.length < 10) { setErr('motivacion', true); ok = false; } else setErr('motivacion', false);
   if (!cvFile) {
     cvError.textContent = 'Adjunta tu CV en formato PDF (máx 5MB).';
     setErr('cv', true);
