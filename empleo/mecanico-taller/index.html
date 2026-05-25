@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mecánico de Taller · Oferta de empleo · Valcomaq</title>
-<meta name="description" content="Valcomaq busca mecánico de taller con experiencia en maquinaria industrial. Incorporación inmediata, contrato estable, buen ambiente.">
-<meta property="og:title" content="Mecánico de Taller · Valcomaq">
+<title>Técnico / Operario Mecánico · Oferta de empleo · Valcomaq</title>
+<meta name="description" content="Valcomaq busca técnico / operario mecánico con experiencia en maquinaria industrial. Incorporación inmediata, contrato estable, buen ambiente.">
+<meta property="og:title" content="Técnico / Operario Mecánico · Valcomaq">
 <meta property="og:description" content="Únete al taller de Valcomaq. Más de 20 años en maquinaria industrial. Incorporación inmediata.">
 <meta property="og:image" content="https://valcomaq.com/wp-content/uploads/2025/09/valcomaq-logo.png">
 <meta property="og:type" content="website">
@@ -14,6 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { overflow-x: hidden; max-width: 100%; }
   html { scroll-behavior: smooth; }
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -21,6 +22,7 @@
     background: #F5F5F5;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    word-wrap: break-word;
   }
   h1, h2, h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; line-height: 1.05; letter-spacing: -0.5px; text-transform: uppercase; }
   img { max-width: 100%; display: block; }
@@ -117,6 +119,7 @@
   .btn:hover { background: #b53415; transform: translateY(-2px); }
   .btn:disabled { background: #8F8F8F; cursor: wait; transform: none; }
   .btn-block { width: 100%; }
+  .btn { min-height: 52px; }
   .btn-secondary { background: #8F8F8F; }
   .btn-secondary:hover { background: #6f6f6f; }
 
@@ -173,6 +176,17 @@
     color: #1a1a1a;
   }
   .checks li:last-child { border-bottom: none; }
+  .checks li.highlight {
+    background: #FFF3F0;
+    border-left: 3px solid #D4401A;
+    border-bottom: none;
+    padding: 18px 18px 18px 16px;
+    margin: 8px 0;
+    border-radius: 0 6px 6px 0;
+    font-weight: 500;
+  }
+  .checks li.highlight + li { border-top: 1px solid #e2e2e2; }
+  .check-icon.star { background: #D4401A; font-size: 13px; }
   .check-icon {
     flex-shrink: 0;
     width: 26px; height: 26px;
@@ -357,14 +371,32 @@
 
   /* RESPONSIVE */
   @media (max-width: 760px) {
-    .hero { padding: 60px 20px 70px; }
-    section { padding: 60px 20px; }
+    .container { padding: 0 20px; }
+    .hero { padding: 56px 20px 64px; }
+    .hero h1 { font-size: clamp(40px, 11vw, 60px); word-break: break-word; hyphens: auto; }
+    .hero-desc { font-size: 16px; }
+    section { padding: 56px 20px; }
+    .section-title { font-size: clamp(32px, 8vw, 44px); margin-bottom: 36px; }
     .grid { grid-template-columns: 1fr; gap: 16px; }
-    .stats { grid-template-columns: 1fr; gap: 32px; }
-    .form-wrap { padding: 32px 22px; }
-    .header-inner { padding: 12px 20px; }
-    .header-inner img { height: 32px; }
-    .header-tag { font-size: 10px; }
+    .card { width: 100%; padding: 26px 22px; }
+    .stats { grid-template-columns: 1fr; gap: 28px; max-width: 280px; margin: 0 auto; }
+    .stat-number { font-size: clamp(36px, 10vw, 52px); }
+    .form-wrap { padding: 28px 20px; border-radius: 6px; }
+    .field input, .field textarea { font-size: 16px; padding: 14px 14px; }
+    .header-inner { padding: 10px 20px; }
+    .header-inner img { max-height: 36px; height: auto; }
+    .header-tag { font-size: 10px; letter-spacing: 1px; }
+    .checks li { font-size: 16px; gap: 12px; padding: 16px 0; }
+    .checks li.highlight { padding: 16px 14px; font-size: 15px; }
+    .about-text { font-size: 16px; }
+    .footer-info { gap: 14px; font-size: 13px; }
+    .btn { padding: 16px 28px; font-size: 15px; }
+    .success { padding: 44px 24px; }
+    .success h2 { font-size: 32px; }
+  }
+  @media (max-width: 380px) {
+    .hero h1 { font-size: 38px; }
+    .section-title { font-size: 30px; }
   }
 </style>
 </head>
@@ -380,7 +412,7 @@
 <section class="hero">
   <div class="hero-inner">
     <span class="badge">Incorporación inmediata · Mayo 2026</span>
-    <h1>Mecánico<br>de Taller</h1>
+    <h1>Técnico / Operario<br>Mecánico</h1>
     <p class="hero-sub">Valcomaq · Maquinaria Industrial desde 2001</p>
     <p class="hero-desc">Buscamos un mecánico con experiencia en maquinaria industrial para incorporarse a nuestro taller en pleno crecimiento. Empresa seria, trabajo estable y buen ambiente de equipo.</p>
     <a href="#formulario" class="btn">Quiero aplicar →</a>
@@ -430,6 +462,7 @@
     <h2 class="section-title">Qué buscamos</h2>
     <ul class="checks">
       <li><span class="check-icon">✓</span><span>Experiencia en mecánica industrial o mantenimiento de maquinaria.</span></li>
+      <li class="highlight"><span class="check-icon star">★</span><span><strong>Se valorará especialmente</strong> experiencia con tornos, fresadoras, sierras industriales, taladros radiales, rectificadoras o maquinaria similar — aunque no es un requisito indispensable.</span></li>
       <li><span class="check-icon">✓</span><span>Capacidad para trabajar de forma autónoma y responsable.</span></li>
       <li><span class="check-icon">✓</span><span>Compromiso y seriedad.</span></li>
       <li><span class="check-icon">✓</span><span>Conocimientos en sistemas mecánicos, hidráulicos o eléctricos (valorable).</span></li>
@@ -448,7 +481,7 @@
         <div class="stat-label">de experiencia</div>
       </div>
       <div>
-        <div class="stat-number">+130</div>
+        <div class="stat-number">+200</div>
         <div class="stat-label">máquinas en stock</div>
       </div>
       <div>
