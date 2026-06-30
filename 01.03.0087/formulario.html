@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solicitar información · Valcomaq</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a class="logo-link" href="index.html" aria-label="Valcomaq"><img class="logo-img" src="logo.jpg" alt="Valcomaq"></a>
+    <div class="header-tag">Maquinaria industrial de ocasión</div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="form-wrap">
+
+    <div class="form-intro">
+      <h1>Solicitar información</h1>
+      <p>Rellena los datos y un comercial te contactará en menos de 24 horas laborables.</p>
+    </div>
+
+    <div id="msgOk" class="mensaje ok" style="display:none;">Gracias. Hemos recibido tu solicitud.</div>
+    <div id="msgError" class="mensaje error" style="display:none;">Hubo un problema al enviar. Inténtalo de nuevo.</div>
+
+    <form id="formContacto">
+      <input type="hidden" name="maquina" id="maquina" value="">
+      <input type="hidden" name="fecha" id="fecha" value="">
+
+      <div class="campo"><label>Nombre y apellidos <span class="obligatorio">*</span></label>
+        <input type="text" name="nombre" required></div>
+      <div class="campo"><label>Empresa</label>
+        <input type="text" name="empresa"></div>
+      <div class="campo"><label>Teléfono <span class="obligatorio">*</span></label>
+        <input type="tel" name="telefono" required></div>
+      <div class="campo"><label>Email <span class="obligatorio">*</span></label>
+        <input type="email" name="email" required></div>
+      <div class="campo"><label>¿Para qué uso vas a destinar la máquina? <span class="obligatorio">*</span></label>
+        <textarea name="uso_previsto" required></textarea></div>
+      <div class="campo"><label>¿Dispones del presupuesto ahora mismo? <span class="obligatorio">*</span></label>
+        <div class="radio-grupo">
+          <label><input type="radio" name="presupuesto" value="Sí, dispongo" required> Sí, dispongo</label>
+          <label><input type="radio" name="presupuesto" value="Necesito financiación"> Necesito financiación</label>
+          <label><input type="radio" name="presupuesto" value="Aún no"> Aún no</label>
+        </div></div>
+      <div class="campo"><label>¿En qué plazo necesitas la máquina? <span class="obligatorio">*</span></label>
+        <select name="plazo" required>
+          <option value="">Selecciona</option>
+          <option>Inmediato (menos de 15 días)</option>
+          <option>Corto (1 mes)</option>
+          <option>Medio (2-3 meses)</option>
+          <option>Largo (más de 3 meses)</option>
+          <option>Solo estoy informándome</option>
+        </select></div>
+      <div class="campo"><label>¿Has comprado maquinaria de segunda mano antes? <span class="obligatorio">*</span></label>
+        <div class="radio-grupo">
+          <label><input type="radio" name="experiencia" value="Sí" required> Sí</label>
+          <label><input type="radio" name="experiencia" value="No"> No</label>
+        </div></div>
+      <div class="campo"><label>¿Dispones de medios de descarga propios? <span class="obligatorio">*</span></label>
+        <select name="medios_descarga" required>
+          <option value="">Selecciona una opción</option>
+          <option>Sí</option>
+          <option>No</option>
+          <option>No sé si serán suficientes</option>
+        </select></div>
+      <div class="campo"><label>Comentarios (opcional)</label>
+        <textarea name="comentarios"></textarea></div>
+
+      <div class="form-submit">
+        <button type="submit" class="btn" id="btnEnviar">Enviar solicitud</button>
+      </div>
+    </form>
+  </div>
+</main>
+
+<footer class="footer">
+  Valcomaq · <a href="mailto:info@valcomaq.com">info@valcomaq.com</a>
+</footer>
+
+<script>
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyxx1MXYOc6Wn5qEbgKX6S60OHOD_c_dlJroYbrI6IZw8Fb98stgd-yVXSNiUjA0EI2cg/exec";
+  const params = new URLSearchParams(window.location.search);
+  document.getElementById("maquina").value = params.get("maquina") || "01.03.0087";
+  document.getElementById("fecha").value = new Date().toISOString();
+
+  const form = document.getElementById("formContacto");
+  const btn = document.getElementById("btnEnviar");
+  const msgOk = document.getElementById("msgOk");
+  const msgError = document.getElementById("msgError");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    msgOk.style.display = "none"; msgError.style.display = "none";
+    btn.disabled = true; btn.textContent = "Enviando...";
+    try {
+      const resp = await fetch(SCRIPT_URL, { method: "POST", body: new FormData(form) });
+      if (!resp.ok) throw new Error("HTTP " + resp.status);
+      msgOk.style.display = "block"; form.reset();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch (err) {
+      console.error(err); msgError.style.display = "block";
+    } finally {
+      btn.disabled = false; btn.textContent = "Enviar solicitud";
+    }
+  });
+</script>
+</body>
+</html>
