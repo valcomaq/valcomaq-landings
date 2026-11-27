@@ -118,3 +118,62 @@ form { background: var(--blanco); border: 1px solid var(--borde); padding: 20px;
   .cta-final h2 { font-size: 24px; }
   .logo-img { height: 56px; }
 }
+
+/* ===== MODO OFERTA (Black Friday / Cyber Monday / oferta especial) =====
+   Todo lo marcado .oferta-only se ve mientras dura la oferta; al llegar la fecha de fin la propia
+   página añade body.oferta-terminada: se oculta lo de oferta y se muestra lo marcado .regular-only. */
+body:not(.oferta-terminada) .regular-only { display: none !important; }
+body.oferta-terminada .oferta-only { display: none !important; }
+
+body.tema-black    { --of-fondo: #111111; --of-acento: #FFD400; --of-texto-acento: #111111; --of-rojo: #E10600; --of-suave: #FFF8CC; }
+body.tema-cyber    { --of-fondo: #0B1B3A; --of-acento: #00E5FF; --of-texto-acento: #06142E; --of-rojo: #0077B6; --of-suave: #DDF8FF; }
+body.tema-generica { --of-fondo: #D4401A; --of-acento: #FFFFFF; --of-texto-acento: #D4401A; --of-rojo: #D4401A; --of-suave: #FFEDE6; }
+
+.oferta-banner { position: relative; background: var(--of-fondo); color: #fff; text-align: center; padding: 8px 12px 16px; }
+.oferta-banner::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 7px;
+  background: repeating-linear-gradient(-45deg, var(--of-acento) 0 12px, var(--of-fondo) 12px 24px); }
+.oferta-banner-titulo { font-size: 20px; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; color: var(--of-acento); line-height: 1.2; }
+.oferta-banner-sub { font-size: 13px; opacity: 0.92; margin-top: 2px; }
+.oferta-banner-sub strong { color: var(--of-acento); }
+
+.cuenta-atras { display: inline-flex; gap: 6px; margin-top: 8px; }
+.cuenta-atras .cd { min-width: 52px; padding: 5px 6px 4px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.28); border-radius: 3px; line-height: 1; }
+.cuenta-atras .cd b { display: block; font-size: 22px; font-weight: 800; font-variant-numeric: tabular-nums; color: var(--of-acento); }
+.cuenta-atras .cd span { display: block; margin-top: 3px; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.85; }
+
+.oferta-sello { position: absolute; top: 10px; left: 10px; z-index: 3; width: 76px; height: 76px; border-radius: 50%;
+  background: var(--of-rojo); color: #fff; border: 4px solid var(--of-acento); box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  font-size: 25px; font-weight: 900; line-height: 1; transform: rotate(-10deg); }
+.oferta-sello small { margin-top: 3px; font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+
+.oferta-caja { margin: 18px 0; padding: 16px; background: var(--of-suave); border: 3px solid var(--of-fondo); border-radius: 4px; }
+.oferta-etiqueta { display: inline-block; margin-bottom: 8px; padding: 4px 10px; background: var(--of-fondo); color: var(--of-acento);
+  font-size: 12px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
+.precio-antes { font-size: 18px; color: var(--gris-oscuro); }
+.precio-antes s { text-decoration-thickness: 2px; text-decoration-color: var(--of-rojo); }
+.precio-ahora { font-size: 40px; font-weight: 900; line-height: 1.1; color: var(--of-rojo); margin: 2px 0 6px; }
+.ahorro { display: inline-block; padding: 4px 10px; background: var(--of-rojo); color: #fff; font-size: 14px; font-weight: 700; }
+.oferta-caja small { display: block; margin-top: 8px; font-size: 13px; color: var(--gris-oscuro); }
+
+.btn-oferta { background: var(--of-acento); color: var(--of-texto-acento); font-size: 18px; box-shadow: 0 0 0 3px var(--of-fondo); animation: of-pulso 1.8s ease-in-out infinite; }
+.btn-oferta:hover, .btn-oferta:active { background: var(--of-acento); filter: brightness(0.92); }
+@keyframes of-pulso { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+@media (prefers-reduced-motion: reduce) { .btn-oferta { animation: none; } }
+
+.cta-final.cta-oferta { background: var(--of-fondo); }
+.cta-final.cta-oferta h2 { color: var(--of-acento); }
+.cta-final.cta-oferta .btn { background: var(--of-acento); color: var(--of-texto-acento); }
+
+.oferta-form-aviso { margin-bottom: 16px; padding: 14px 16px; background: var(--of-fondo); color: #fff; border-left: 6px solid var(--of-acento); }
+.oferta-form-aviso strong { color: var(--of-acento); }
+
+@media (min-width: 600px) {
+  .oferta-sello { width: 92px; height: 92px; font-size: 30px; top: 12px; left: 12px; }
+  .oferta-sello small { font-size: 10px; }
+  .oferta-banner-titulo { font-size: 24px; }
+  .precio-ahora { font-size: 46px; }
+}
+@media (min-width: 900px) {
+  .oferta-sello { width: 112px; height: 112px; font-size: 38px; top: 16px; left: 16px; }
+}

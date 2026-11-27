@@ -6,7 +6,7 @@
 <title>Solicitar información · Valcomaq</title>
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="tema-black">
 
 <header class="header">
   <div class="header-inner">
@@ -17,6 +17,10 @@
 
 <main class="container">
   <div class="form-wrap">
+
+    <div class="oferta-form-aviso oferta-only">
+      <strong>Black Friday:</strong> 8.950 € <s>9.995 €</s> (-10%) · válida hasta el lunes 30 de noviembre
+    </div>
 
     <div class="form-intro">
       <h1>Solicitar información</h1>
@@ -83,6 +87,7 @@
 
 <script>
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyxx1MXYOc6Wn5qEbgKX6S60OHOD_c_dlJroYbrI6IZw8Fb98stgd-yVXSNiUjA0EI2cg/exec";
+  const OFERTA = {"texto":"BLACK FRIDAY -10% · 8.950 € (antes 9.995 €)","fin":"2026-11-30T23:59:59+01:00"};
   const params = new URLSearchParams(window.location.search);
   document.getElementById("maquina").value = params.get("maquina") || "01.21.0367";
   document.getElementById("fecha").value = new Date().toISOString();
@@ -97,7 +102,13 @@
     msgOk.style.display = "none"; msgError.style.display = "none";
     btn.disabled = true; btn.textContent = "Enviando...";
     try {
-      const resp = await fetch(SCRIPT_URL, { method: "POST", body: new FormData(form) });
+      const datos = new FormData(form);
+      // Mientras la oferta está vigente, el lead queda marcado (columna Comentarios del Sheet de leads)
+      if (OFERTA && Date.now() < Date.parse(OFERTA.fin)) {
+        datos.set("oferta", OFERTA.texto);
+        datos.set("comentarios", "[OFERTA " + OFERTA.texto + "] " + (datos.get("comentarios") || ""));
+      }
+      const resp = await fetch(SCRIPT_URL, { method: "POST", body: datos });
       if (!resp.ok) throw new Error("HTTP " + resp.status);
       msgOk.style.display = "block"; form.reset();
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -107,6 +118,25 @@
       btn.disabled = false; btn.textContent = "Enviar solicitud";
     }
   });
+</script>
+<script>
+(function(){
+  var fin = Date.parse("2026-11-30T23:59:59+01:00");
+  var relojes = document.querySelectorAll(".cuenta-atras");
+  function pad(n){ return (n < 10 ? "0" : "") + n; }
+  function poner(el, u, v){ var x = el.querySelector('[data-u="' + u + '"]'); if (x) x.textContent = v; }
+  function tick(){
+    var ms = fin - Date.now();
+    if (!(ms > 0)) { document.body.classList.add("oferta-terminada"); return false; }
+    var s = Math.floor(ms / 1000);
+    var d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60), x = s % 60;
+    for (var i = 0; i < relojes.length; i++) {
+      poner(relojes[i], "d", d); poner(relojes[i], "h", pad(h)); poner(relojes[i], "m", pad(m)); poner(relojes[i], "s", pad(x));
+    }
+    return true;
+  }
+  if (tick()) { var t = setInterval(function(){ if (!tick()) clearInterval(t); }, 1000); }
+})();
 </script>
 </body>
 </html>
